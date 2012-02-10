@@ -1,0 +1,9 @@
+    <div id='main' role='main' class='content'>
+
+      <h1>Preguntas frecuentes</h1>
+
+      <% @sections.each do |name, content| %>
+      <a name='<%= h name %>'></a>
+      <%= content %>
+      <% end %>
+    </div>

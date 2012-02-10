@@ -1,0 +1,276 @@
+    <div id='sidebar'>
+      <h2>¿Qué estás viendo?</h2>
+      <ul id='layers'>
+        <li data-layer-name='industrias' class='industrias'>
+        <header>
+          <input type='checkbox' name='entity' value='industrias' checked> Industrias
+          <a href='#filters-industrias' class='expand'></a>
+        </header>
+
+		<!-- Inicio Filtro de Empresas -->
+
+	    <div id='filters-industrias' class='entity-filter' data-target-layer='industrias'>
+	      <section class='filter riesgo' data-facet='semaforo_riesgo'>
+	        <header>
+	          Semáforo de Industrias
+	          <a href='/contenido/como-opera-qpr#semaforo-industrias' class='contextual'>¿Qué es?</a>
+	        </header>
+          <div class='chart'></div>
+	      </section>
+
+	      <section class='filter facet col-2' data-facet='rubro' style='display: block'>
+	        <header>Rubro</header>
+	        <div>
+	          <% @rubros.each do |rubro| %>
+	          <label><input type='checkbox' value='<%= rubro %>' checked><%= rubro || "Otro" %></label>
+	          <% end %>
+	        </div>
+	      </section>
+	    </div>
+
+	    <!-- Cierro Filtro de Empresas -->
+
+        </li>
+
+        <li data-layer-name='basurales' class='basurales'>
+        <header>
+          <input type='checkbox' name='entity' value='basurales' checked> Basurales
+          <a href='#filters-basurales' class='expand'></a>
+        </header>
+
+        <!-- Inicio Filtro de Basurales -->
+
+	    <div id='filters-basurales' class='entity-filter' data-target-layer='basurales'>
+
+        <section class='filter facet' data-facet='erradicado' style='display: block'>
+          <header>Estado</header>
+          <div>
+            <label><input type='checkbox' value='' checked>Activo</label>
+            <label><input type='checkbox' value='1' checked>Erradicado</label>
+          </div>
+        </section>
+
+	      <section class='filter facet' data-facet='clasificacion' style='display: block'>
+	        <header>Clasificación</header>
+	        <div>
+	          <% @clasificaciones.each do |clasificacion| %>
+	          <label><input type='checkbox' value='<%= clasificacion %>' checked><%= clasificacion || "Otro" %></label>
+	          <% end %>
+	        </div>
+	      </section>
+
+	      <section class='filter facet range-filter' data-facet='sup_afectada' style='display: block' data-max='160000' data-min='0' data-step='5'>
+	        <header>Superficie afectada</header>
+	        <div>
+	          <span class='filter-value'><output class='result'></output> m²</span>
+	        </div>
+	      </section>
+	    </div>
+
+        <!-- Cierro Filtro de Basurales -->
+
+        </li>
+
+        <li data-layer-name='asentamientos' class='asentamientos'>
+        <header>
+          <input type='checkbox' name='entity' value='asentamientos' checked> Asentamientos
+          <a href='#filters-asentamientos' class='expand'></a>
+		</header>
+
+        <!-- Inicio Filtro de Asentamientos -->
+	    <div id='filters-asentamientos' class='entity-filter' data-target-layer='asentamientos'>
+	      <section class='filter facet' data-facet='tipo' style='display: block'>
+	        <header>Tipo</header>
+	        <div>
+	          <% %w(Villa Asentamiento).each do |tipo| %>
+	          <label><input type='checkbox' value='<%= tipo %>' checked><%= tipo || "Otro" %></label>
+	          <% end %>
+	        </div>
+	      </section>
+	    </div>
+
+        <!-- Cierro Filtro de Asentamientos -->
+
+        </li>
+
+        <li data-layer-name='reportes' class='reportes'>
+        <header>
+          <input type='checkbox' name='entity' value='reportes' checked> Alertas territoriales
+          <a href='#filters-reportes' class='expand'></a>
+		</header>
+
+        <!-- Inicio Filtro de Reportes -->
+
+	    <div id='filters-reportes' class='entity-filter' data-target-layer='reportes'>
+	      <section class='filter facet' data-facet='category' style='display: block'>
+	        <header>Categoría</header>
+	        <div>
+	          <% (JSON.parse(File.read("data/ushahidi-categories.json")).values.uniq - ["Trusted Reports"]).sort.each do |tipo| %>
+	          <label><input type='checkbox' value='<%= tipo %>' checked><%= tipo || "Otro" %></label>
+	          <% end if defined?(Encoding) %>
+	        </div>
+	      </section>
+	    </div>
+
+        <!-- Cierro Filtro de Reportes -->
+
+        </li>
+      </ul>
+
+      <div class='views'>
+      	 <h2>¿Cómo lo estás viendo?</h2>
+        <a href='#view=map' title='Vista de mapa' class='map active'><span></span></a><a href='#view=table' title='Vista de tabla' class='table'><span></span></a>
+        <br /><span class="vista-mapa">Mapa</span><span class="vista-tabla">Tabla</span>
+      </div>
+    </div>
+
+	<! -- Posicion original de filtros -->
+	<! -- Final Posicion original de filtros -->
+
+
+    <div id="main" role="main" class="fluid">
+      <div id="table" style='display: none'>
+        <table id='industrias-table' class='display'></table>
+        <table id='basurales-table' class='display'></table>
+        <table id='asentamientos-table' class='display'></table>
+        <table id='reportes-table' class='display'></table>
+      </div>
+
+      <div id="map"></div>
+    </div>
+
+    <script type='text/html' id='industrias-bubble-template'>
+      <div class='bubble'>
+        <header>Industria</header>
+        <h1><a href='/industrias/${cuit.value}'>${razon_social.value}</a></h1>
+        <span>Click para ver detalle</span>
+        <div class='chart' data-x='${semaforo_riesgo.value}' data-y='${semaforo_legal.value}'></div>
+
+        <table class='info'>
+          <!--tr>
+            <td>CUIT</td>
+            <td>${cuit.value}</td>
+          </tr>
+
+          <tr>
+            <td>Personal de oficina</td>
+            <td>${personal_oficina.value.toLowerCase()}</td>
+          </tr>
+
+          <tr>
+            <td>Personal de fábrica</td>
+            <td>${personal_fabrica.value.toLowerCase()}</td>
+          </tr>
+
+          <tr>
+            <td>Superficie total</td>
+            <td>${superficie_total.value.toLowerCase()} m²</td>
+          </tr>
+
+          <tr>
+            <td>Superficie cubierta</td>
+            <td>${superficie_cubierta.value.toLowerCase()} m²</td>
+          </tr>
+
+          <tr>
+            <td>Consumo eléctrico</td>
+            <td>${consumo_electricidad.value} HP</td>
+          </tr-->
+
+          <tr>
+            <td>Actividades</td>
+            <td>
+              ${excerpt(actividad_1.value, 100)}
+              <br>
+              ${excerpt(actividad_2.value, 100)}
+            </td>
+          </tr>
+          <tr>
+            <td>Direcci&oacute;n</td>
+            <td>
+              ${calle.value} ${nro_calle.value}
+              <br>
+              ${localidad_real.value} - ${partido.value}
+            </td>
+          </tr>
+
+
+        </table>
+      </div>
+    </script>
+
+    <script type='text/html' id='basurales-bubble-template'>
+      <div class="bubble">
+        <header>Basural</header>
+
+        <h1><a href='/basurales/${id.value}'>${denominacion.value}</a></h1>
+        <span>Click para ver detalle</span>
+        <p>${direccion.value}
+        <br>
+        ${localidad_barrio.value},
+        ${partido.value}
+
+        <table class='info'>
+          <tr>
+            <td>Superficie afectada</td>
+            <td>${sup_afectada.value} m²</td>
+          </tr>
+
+          <tr>
+            <td>Categoría</td>
+            <td>${categoria.value}</td>
+          </tr>
+        </table>
+      </div>
+    </script>
+
+    <script type='text/html' id='asentamientos-bubble-template'>
+      <div class="bubble">
+        <header>Asentamiento</header>
+
+        <h1><a href='/asentamientos/${id.value}'>${nombre.value}</a></h1>
+        <span>Click para ver detalle</span>
+
+        <table class='info'>
+          <tr>
+            <td>Ubicación</td>
+            <td>N/A</td>
+          </tr>
+
+          <tr>
+            <td>Tipo</td>
+            <td>${tipo.value}</td>
+          </tr>
+
+           <tr>
+            <td>Año de Inicio</td>
+            <td>${inicio.value}</td>
+          </tr>
+
+        </table>
+      </div>
+    </script>
+
+    <script type='text/html' id='reportes-bubble-template'>
+      <div class="bubble">
+        <header>Alerta territorial</header>
+
+        <h1><a href='http://quepasariachuelo.crowdmap.com/reports/view/${id.value}' target='_blank'>${title.value}</a></h1>
+
+        <p>
+          ${description.value}
+        </p>
+
+        <table class='info'>
+          <tr>
+            <td>Fecha</td>
+            <td>${date.value}</td>
+          </tr>
+
+        </table>
+      </div>
+    </script>
+
+    <script>
+      window.onload = function() { initializeMap(); };
+    </script>

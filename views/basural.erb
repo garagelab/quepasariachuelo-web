@@ -1,0 +1,130 @@
+<% @page_title = @basural["denominacion"] %>
+
+    <div id='main' role='main' class='content entity'>
+
+      <div class='main'>
+        <h1>
+          <%= @basural["denominacion"] %>
+        </h1>
+
+        <% if @basural["erradicado"].to_i == 1 %>
+        <span class='badge ok'>
+          Erradicado
+        </span>
+        <% end %>
+
+        <section>
+          <% if @basural["erradicado"].to_i == 1 %>
+            <p>
+            Este basural fue erradicado por ACUMAR
+            y entregado al municipio de <%= @basural["municipio"] %>
+            para su custodia.
+            </p>
+          <% end %>
+
+          <table class='info'>
+            <tr>
+              <td>Superficie afectada</td>
+              <td><%= @basural["sup_afectada"] %> m²</td>
+            </tr>
+
+            <tr>
+              <td>Estado actual</td>
+              <td><%= @basural["estado_actual"] %></td>
+            </tr>
+
+            <tr>
+              <td>Categoría</td>
+              <td><%= @basural["categoria"] %></td>
+            </tr>
+
+			 <tr>
+	              <td>Estado</td>
+	              <td><%= @basural["estado_actual"] %></td>
+	            </tr>
+
+					 <tr>
+			              <td>Dispocición Final</td>
+			              <td><%= @basural["estado"] %></td>
+			            </tr>
+							<tr>
+					            <td>Composición</td>
+					            <td>
+					              <table>
+										 <tr>
+								            <td>Urbanos (%)</td>
+								            <td>Urbanos (%)</td>
+								          </tr>
+
+								          <tr>
+								            <td>Peligrosos (%)</td>
+								            <td>Peligrosos (%)</td>
+								          </tr>
+
+										<tr>
+								            <td>Poda (%)</td>
+								            <td>Poda (%)</td>
+								          </tr>
+
+										<tr>
+								            <td>Patogénicos (%)</td>
+								            <td>Patogénicos (%)</td>
+								          </tr>
+
+										<tr class='no-border'>
+								            <td>Escombros (%)</td>
+								            <td>Escombros (%)</td>
+								          </tr>
+											</table>
+											</td>
+								          </tr>
+
+
+										 <tr>
+								              <td>Observaciones</td>
+								              <td><%= @basural["OBSERVACION"] %></td>
+								            </tr>
+
+          </table>
+		<p>Fuente:<br />
+		Tabla de Basurales a Cielo Abierto, Julio 2010 generada por ACUMAR, que forma parte de la documentación informada al Juzgado Federal de Quilmes.
+
+        </section>
+
+        <% if @basural["id"] == "99" %>
+        <section>
+        <h2>Evolución</h2>
+
+        <div class='image-slider'>
+        <% 6.times do |i| %>
+          <img src='http://s3.amazonaws.com/qpr/basural-mc-<%= i %>.jpg' alt='Foto <%= i + 1 %> del basural <%= @basural["denominacion"] %>'>
+        <% end %>
+        </div>
+
+        <p>"Evolución y estado actual de los basurales de la cuenca
+        Matanza-Riachuelo mediante técnicas de teledetección.<br />
+        Investigacion: Facultad de Agronomía, Universidad de Buenos Aires.
+        Director: Dr. Martín F. Garbulsky (<a href='mailto:garbulsky@agro.uba.ar'>garbulsky@agro.uba.ar</a>),
+        Equipo: Sr. Facundo Facio.<br /><a href='/contenido/como-opera-qpr#basurales'>Ver más</a>
+        </p>
+
+        </section>
+
+        <% end %>
+      </div>
+
+      <div class='sidebar'>
+
+        <section class='location'>
+          <h2>Ubicación</h2>
+
+          <div class='zoomed-map' data-lat='<%= @basural["location"].split(" ").first %>' data-lng='<%= @basural["location"].split(" ").last %>' data-map-type='satellite'></div>
+
+          <%= @basural["direccion"] %>
+          <br>
+          <%= @basural["localidad_barrio"] %>, <%= @basural["partido"] %>
+        </section>
+
+      </div>
+
+    </div>

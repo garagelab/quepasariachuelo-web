@@ -1,0 +1,99 @@
+<% @page_title = @asentamiento["nombre"] %>
+
+    <div id='main' role='main' class='content entity'>
+
+      <div class='main'>
+        <h1>
+          <%= @asentamiento["nombre"] %>
+        </h1>
+
+        <section>
+          <table class='info'>
+            
+			<tr>
+            <td>Ubicación</td>
+            <td>N/A</td>
+          </tr>
+		 <tr>
+              <td>Año de Inicio</td>
+              <td><%= @asentamiento["Inicio"] || "N/D" %></td>
+            </tr>
+
+			<tr>
+              <td>Tipo</td>
+              <td><%= @asentamiento["tipo"] %></td>
+            </tr>
+
+           
+          </table>
+        </section>
+
+        <% unless @relocalizaciones.empty? %>
+        <h2>Relocalizaciones</h2>
+		<p>Relocalizaciones para liberar el "camino de sirga"<br />
+		ACUMAR, a expensas de una serie de órdenes emanadas del Juzgado federal de Quilmes, intensificó las acciones destinadas a  lograr la liberación del “camino de sirga” (franja de 35 metros lindante a  la orilla de los ríos o canales que sirven a la comunicación por agua en la que por disposición del Art. 2.369 del Código Civil se impiden construcciones y se establecen restricciones al derecho de propiedad). dicho camino es actualmente ocupado en forma parcial por empresas  y asentamientos informales. En relación a las personas que viven sobre la franja lindante al curso de agua, se promovió su incorporación a los planes de vivienda existentes,  con carácter prioritario, a efectos de ser relocalizadas. Una cuestión que merecerá especial atención es  la de los procedimientos de relocalización que se ejecutarán. El Cuerpo  Colegiado ha instado a que en los mismos se garantice el respeto a los  derechos de los vecinos, así como también que se implementen mecanismos de participación para involucrar a los mismos en los procesos que se lleven a cabo". Informe <a href='http://www.farn.org.ar/newsite/wp-content/uploads/2011/06/08_napoli_espil.pdf' target='_blank'>"Riachuelo: Hacer hoy pensando en la cuenca del mañana"</a>, Andrés Nápoli y Javier García Espil, 2011/06.
+		<section>
+          <table class='info'>
+            
+			<tr>
+            <td>Nombre</td>
+            <td>N/A</td>
+          </tr>
+		 <tr>
+              <td>Ubicación</td>
+              <td>N/A</td>
+            </tr>
+
+			<tr>
+              <td>Cantidad de Familias a Relocalizar</td>
+             <td>N/A</td>
+            </tr>
+
+
+			<tr>
+              <td>Destino de la Relocalización</td>
+             <td>N/A</td>
+            </tr>
+
+				<tr>
+	              <td>Cantidad de Familias a Relocalizar</td>
+	             <td>N/A</td>
+	            </tr>
+
+
+				<tr>
+	              <td>Destino de la Relocalización</td>
+	             <td>N/A</td>
+	            </tr>
+	
+					<tr>
+		              <td>Fecha Límite para la Relocalización</td>
+		             <td>N/A</td>
+		            </tr>
+
+           
+          </table>
+			<p>Fuente:<br />Georeferenciado los datos sobre relocalizaciones contenidos en la <a href='http://www.farn.org.ar/newsite/wp-content/uploads/2011/09/resolucion14072011.pdf' target='_blank'>resolución del Juez Armella, Juzgado Federal de Quilmes del 14 de Julio de 2011</a> de las VyA afectadas por el camino de sirga. (<a href='http://quepasariachuelo.org.ar/asentamientos/qpr-1'>Ejemplo</a>).
+        </section>
+        <script>
+          window.relocalizaciones = <%= JSON.pretty_generate(@relocalizaciones) %>;
+        </script>
+
+        <div class='zoomed-map' id='relocalizaciones' data-table-id='<%= TABLES[:asentamientos] %>' data-filter="id = '<%= @asentamiento["id"] %>'" data-center='<%= @asentamiento["center"] %>' data-map-type='satellite' data-zoom='12' style='height: 300px'>
+        </div>
+        <% end %>
+
+      </div>
+
+      <div class='sidebar'>
+
+        <section class='location'>
+          <h2>Ubicación</h2>
+
+          <div class='zoomed-map' data-table-id='<%= TABLES[:asentamientos] %>' data-filter="id = '<%= @asentamiento["id"] %>'" data-center='<%= @asentamiento["center"] %>' data-map-type='satellite'></div>
+
+        </section>
+
+      </div>
+
+    </div>

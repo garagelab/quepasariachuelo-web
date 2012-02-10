@@ -1,0 +1,221 @@
+<% @page_title = @industria["razon_social"] %>
+
+<div id='main' role='main' class='content entity'>
+
+  <div class='main'>
+    <h1>
+      <%= @industria["razon_social"] %>
+    </h1>
+
+    <% if @industria["semaforo_legal_absoluto"].to_i == 0 %>
+      <span class='badge ok'>
+        Industria reconvertida
+      </span>
+    <% else %>
+      <span class='badge bad'>
+        Agente contaminante
+      </span>
+    <% end %>
+
+    <h2>Datos Generales</h2>
+
+    <table class='info'>
+      <tr>
+        <td>Nombre</td>
+        <td><%= @industria["razon_social"] %></td>
+      </tr>
+      <tr>
+        <td>Rubro</td>
+        <td><%= @industria["rubro"] %></td>
+      </tr>
+      <tr>
+        <td>Productos</td>
+        <td><%= join_cols(@industria, :producto) %></td>
+      </tr>
+      <tr>
+        <td>Dirección</td>
+        <td><%= @industria["calle"] %> <%= @industria["nro_calle"] %><br>
+          <%= @industria["localidad_real"] %>, <%= @industria["partido"] %>
+        </td>
+      </tr>
+      <tr>
+        <td>CUIT</td>
+        <td><%= @industria["cuit"] %></td>
+      </tr>
+      <tr>
+        <td>CURT</td>
+        <td><%= @industria["curt"] %></td>
+      </tr>
+      <tr>
+        <td>Sitio web</td>
+        <td><a href='<%= @industria["sitio_web"] %>' target='_blank'><%= @industria["sitio_web"] %></a></td>
+      </tr>
+
+    </table>
+    <h2>Datos del Establecimiento - Índice de Riesgo Ambiental</h2>
+    <table class='info'>
+
+      <tr>
+        <td>Actividad</td>
+        <td>
+          <%= join_cols(@industria, :actividad) %>
+        </td>
+      </tr>
+
+      <tr>
+        <td>Dimensión</td>
+        <td>
+          <table>
+            <tr>
+              <td>Personal de oficina</td>
+              <td><%= @industria["personal_oficina"] %></td>
+            </tr>
+
+            <tr>
+              <td>Personal de fábrica</td>
+              <td><%= @industria["personal_fabrica"] %></td>
+            </tr>
+
+            <tr>
+              <td>Superficie total</td>
+              <td><%= @industria["superficie_total"] %> m²</td>
+            </tr>
+
+            <tr>
+              <td>Superficie cubierta</td>
+              <td><%= @industria["superficie_cubierta"] %> m²</td>
+            </tr>
+
+            <tr class='no-border'>
+              <td>Consumo eléctrico</td>
+              <td><%= @industria["consumo_electricidad"] %> HP</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+
+      <tr>
+        <td>Efluentes</td>
+        <td>
+          <table>
+            <tr>
+              <td>Líquidos</td>
+              <td><%= yesno @industria["residuos_liquidos"] %></td>
+            </tr>
+
+            <tr>
+              <td>Gaseosos</td>
+              <td><%= yesno @industria["residuos_gaseosos"] %></td>
+            </tr>
+
+            <tr>
+              <td>Patogénicos</td>
+              <td><%= yesno @industria["residuos_patogenicos"] %></td>
+            </tr>
+
+            <tr class='no-border'>
+              <td>Sustancias peligrosas</td>
+              <td><%= yesno @industria["residuos_patogenicos"] %></td>
+            </tr>
+
+          </table>
+        </td>
+      </tr>
+
+
+      <tr>
+        <td>Localización</td>
+        <td>
+          <table>
+            <tr class='no-border'>
+              <td>Zona industrial</td>
+              <td><%= @industria["zona_industrial"] %></td>
+            </tr>
+
+          </table>
+        </td>
+      </tr>
+
+
+      <tr>
+        <td>Datos complementarios</td>
+        <td>
+          <table>
+            <tr>
+              <td>Consumo de agua</td>
+              <td><%= @industria["agua_consumo"] %></td>
+            </tr>
+
+            <tr class='no-border'>
+              <td>Gestión ambiental</td>
+              <td><%= yesno @industria["gestion_ambiental"] %></td>
+            </tr>
+
+            <tr class='no-border'>
+              <td>Aptitud ambiental</td>
+              <td>
+                <%= yesno @industria["aptitud_ambiental"] %>
+                <%= "(#{@industria["aptitud_ambiental_caba"]})" unless @industria["aptitud_ambiental_caba"].empty? %>
+              </td>
+            </tr>
+
+          </table>
+          <p>Fuente:<br />Declaraciones juradas para el
+          <a href='http://www.sicmar.gov.ar/index/index.html' target='_blank'>CURT</a>
+          y los informes de las inspecciones y fiscalizaciones
+          efectuadas por el organismo y que forman parte de la
+          documentación informada al Juzgado Federal de Quilmes. La
+          información del CURT pertenece al 7 de julio de 2011, por lo
+          que algunos datos pueden estar desactualizados.
+        </td>
+      </tr>
+
+    </table>
+
+
+    <h2>Comportamiento Legal</h2>
+    <table class='info'>
+
+
+
+      <tr>
+        <td>Situación ante el PRI</td>
+        <td>
+          <%= @industria["situacion_pri"] %>
+
+          <p>Fuente:<br />Datos del sitio web ACUMAR y documentación informada al Juzgado Federal de Quilmes.</p>
+        </td>
+      </tr>
+
+    </table>
+
+
+  </div>
+
+  <div class='sidebar'>
+    <section id='riesgo'>
+    <div class='chart' data-x='<%= @industria["semaforo_riesgo"] %>' data-y='<%= @industria["semaforo_legal"] %>'></div>
+
+    <p>
+    Dimensión de riesgo: <%= @industria["semaforo_riesgo_absoluto"] %> puntos.
+    <br>
+    Dimensión legal: <%= @industria["semaforo_legal_absoluto"] %> puntos.
+    <br>
+    <a href='/contenido/como-opera-qpr#semaforo-industrias' class='contextual'>¿Cómo se calcula?</a>
+    </p>
+    </section>
+
+    <section class='location'>
+    <h2>Ubicación</h2>
+
+    <div class='zoomed-map' data-lat='<%= @industria["latitud"] %>' data-lng='<%= @industria["longitud"] %>'></div>
+
+    <%= @industria["calle"] %>
+    <%= @industria["nro_calle"] %>
+    <br>
+    <%= @industria["localidad_real"] %>, <%= @industria["partido"] %>
+    </section>
+
+  </div>
+
+</div>
