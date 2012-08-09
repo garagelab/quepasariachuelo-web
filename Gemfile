@@ -1,3 +1,4 @@
-rdiscount
-sequel-fusiontables
-sinatra
+source "https://rubygems.org"
+gem 'sinatra'
+gem 'rdiscount'
+gem 'sequel-fusiontables'
