@@ -25,7 +25,7 @@ class FusionTables
     # Queries the Fusion Tables API with the given SQL and returns an
     # array of arrays for rows and columns.
     def query(sql)
-      res = process_sql(sql)
+      res = process_sql(sql.gsub('(', '').gsub(')', ''))
 
       case res
       when Net::HTTPOK
