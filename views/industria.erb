@@ -53,18 +53,6 @@
 
     </table>
 
-    <h2>Datos nuevos</h2>
-    <table class='info'>
-      <tr>
-        <td>Clave</td>
-        <td>Valor</td>
-      </tr>
-      <tr>
-        <td>Clave</td>
-        <td>Valor</td>
-      </tr>
-    </table>
-
     <h2>Datos del Establecimiento - Índice de Riesgo Ambiental</h2>
     <table class='info'>
 
@@ -125,12 +113,6 @@
               <td>Patogénicos</td>
               <td><%= yesno @industria["residuos_patogenicos"] %></td>
             </tr>
-
-            <tr class='no-border'>
-              <td>Sustancias peligrosas</td>
-              <td><%= yesno @industria["residuos_patogenicos"] %></td>
-            </tr>
-
           </table>
         </td>
       </tr>
@@ -144,7 +126,6 @@
               <td>Zona industrial</td>
               <td><%= @industria["zona_industrial"] %></td>
             </tr>
-
           </table>
         </td>
       </tr>
@@ -154,7 +135,7 @@
         <td>Datos complementarios</td>
         <td>
           <table>
-            <tr>
+            <tr class='no-border'>
               <td>Consumo de agua</td>
               <td><%= @industria["agua_consumo"] %></td>
             </tr>
@@ -172,14 +153,75 @@
               </td>
             </tr>
 
+            <tr class='no-border'>
+              <td>Agua Subterranea</td>
+              <td>
+                <%= yesno @industria["agua_subterranea"] %>
+              </td>
+            </tr>
+
+            <tr class='no-border'>
+              <td>Colector Cloacal</td>
+              <td>
+                <%= yesno @industria["colector_cloacal"] %>
+              </td>
+            </tr>
+
+            <tr class='no-border'>
+              <td>Acopio Peligroso</td>
+              <td>
+                <%= yesno @industria["acopio_peligroso"] %>
+              </td>
+            </tr>
+
+            <tr class='no-border'>
+              <td>Tanques Subterraneos</td>
+              <td>
+                <%= yesno @industria["tanques_subterraneos"] %>
+              </td>
+            </tr>
+
+            <tr class='no-border'>
+              <td>Tanques Aereos</td>
+              <td>
+                <%= yesno @industria["tanques_aereos"] %>
+              </td>
+            </tr>
+
+            <tr class='no-border'>
+              <td>Tanques Otras sustancias</td>
+              <td>
+                <%= yesno @industria["tanques_otras_sustancias"] %>
+                <%= "(#{@industria["otras_sustancias_detalle"]})" unless @industria["otras_sustancias_detalle"].empty? %>
+              </td>
+            </tr>
+
+            <tr class='no-border'>
+              <td>Sustancias Peligrosas</td>
+              <td>
+                <%= yesno @industria["sustancias_peligrosas"] %>
+                <%= "(#{@industria["sustancias_detalle"]})" unless @industria["sustancias_detalle"].empty? %>
+                <%= "(#{@industria["acopio_sustancias"]})" unless @industria["acopio_sustancias"].empty? %>
+              </td>
+            </tr>
+
+            <tr class='no-border'>
+              <td>Transformadores</td>
+              <td>
+                <%= yesno @industria["transformadores"] %>
+                <%= "(#{@industria["cantidad_transformadores"]})" unless @industria["cantidad_transformadores"].empty? %>
+              </td>
+            </tr>
+
           </table>
-          <p>Fuente:<br />Declaraciones juradas para el
+          <p>Fuente: COMPLETAR</p>
+          <!-- <br />Declaraciones juradas para el
           <a href='http://www.sicmar.gov.ar/index/index.html' target='_blank'>CURT</a>
           y los informes de las inspecciones y fiscalizaciones
           efectuadas por el organismo y que forman parte de la
           documentación informada al Juzgado Federal de Quilmes. La
           información del CURT pertenece al 7 de julio de 2011, por lo
-          que algunos datos pueden estar desactualizados.
+          que algunos datos pueden estar desactualizados. -->
         </td>
       </tr>
 
@@ -188,15 +230,13 @@
 
     <h2>Comportamiento Legal</h2>
     <table class='info'>
-
-
-
       <tr>
         <td>Situación ante el PRI</td>
         <td>
           <%= @industria["situacion_pri"] %>
 
-          <p>Fuente:<br />Datos del sitio web ACUMAR y documentación informada al Juzgado Federal de Quilmes.</p>
+          <p>Fuente: COMLETAR</p>
+            <!-- <br />Datos del sitio web ACUMAR y documentación informada al Juzgado Federal de Quilmes.-->
         </td>
       </tr>
 
