@@ -13,7 +13,8 @@ DB = Sequel.connect("fusiontables:///")
 FusionTables::Connection::URL = URI.parse("http://tables.googlelabs.com/api/query")
 
 TABLES = {
-  :industrias       => 1731573,
+  #:industrias       => 1731573,
+  :industrias       => 4884840,
   :basurales        => 1413418,
   :asentamientos    => 1874853,
   :relocalizaciones => 1809291,
