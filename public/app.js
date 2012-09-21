@@ -209,7 +209,7 @@ var COLUMNS = {
     {sName: "cuit", sTitle: "CUIT"},
     {sName: "curt", sTitle: "CURT"},
     {sName: "localidad_real", sTitle: "Localidad"},
-    {sName: "partido", sTitle: "Partido"},
+    {sName: "partido_real", sTitle: "Partido"},
     {sName: "sitio_web", sTitle: "URL"},
     {sName: "personal_fabrica", sTitle: "Personal fábrica"},
     {sName: "personal_oficina", sTitle: "Personal oficina"},
@@ -221,14 +221,13 @@ var COLUMNS = {
     {sName: "actividad_3", sTitle: "Actividad 3"},
     {sName: "actividad_4", sTitle: "Actividad 4"},
     {sName: "actividad_5", sTitle: "Actividad 5"},
-    {sName: "latitud", sTitle: "Latitud"},
-    {sName: "longitud", sTitle: "Longitud"},
-    {sName: "residuos_liquidos", sTitle: "Res. líquidos"},
-    {sName: "residuos_gaseosos", sTitle: "Res. gaseosos"},
+    {sName: "location", sTitle: "Dirección"},
+    // {sName: "residuos_liquidos", sTitle: "Res. líquidos"},
+    {sName: "emisiones_gaseosas", sTitle: "Emisiones gaseosas"},
     {sName: "residuos_patogenicos", sTitle: "Res. patogénicos"},
     {sName: "residuos_peligrosos", sTitle: "Res. peligrosos"},
     {sName: "residuos_solidos", sTitle: "Res. sólidos"},
-    {sName: "trata_efluentes_liquidos", sTitle: "Trata efluentes líquidos"},
+    {sName: "tratamiento_de_efluentes", sTitle: "Trata efluentes líquidos"},
   ],
 
   basurales: [
@@ -631,7 +630,24 @@ $(function() {
         }
       });
     }
-    else {
+    else if(this.getAttribute('data-location')) {
+      var loc = this.getAttribute('data-location');
+
+      var geocoder = new google.maps.Geocoder();
+
+      geocoder.geocode( { 'address': loc}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+          map.setCenter(results[0].geometry.location);
+          var marker = new google.maps.Marker({
+              map: map,
+              position: results[0].geometry.location
+          });
+        } else {
+          alert("Geocode was not successful for the following reason: " + status);
+        }
+      });
+    }
+    else{
       var lat = parseFloat(this.getAttribute('data-lat'));
       var lng = parseFloat(this.getAttribute('data-lng'));
 

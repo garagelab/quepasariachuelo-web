@@ -35,7 +35,7 @@
       <tr>
         <td>Dirección</td>
         <td><%= @industria["calle"] %> <%= @industria["nro_calle"] %><br>
-          <%= @industria["localidad_real"] %>, <%= @industria["partido"] %>
+          <%= @industria["localidad_real"] %>, <%= @industria["partido_real"] %>
         </td>
       </tr>
       <tr>
@@ -261,12 +261,12 @@
     <section class='location'>
     <h2>Ubicación</h2>
 
-    <div class='zoomed-map' data-lat='<%= @industria["latitud"] %>' data-lng='<%= @industria["longitud"] %>'></div>
+    <div class='zoomed-map' data-location='<%= @industria["location"] %>'></div>
 
     <%= @industria["calle"] %>
     <%= @industria["nro_calle"] %>
     <br>
-    <%= @industria["localidad_real"] %>, <%= @industria["partido"] %>
+    <%= @industria["localidad_real"] %>, <%= @industria["partido_real"] %>
     </section>
 
   </div>
