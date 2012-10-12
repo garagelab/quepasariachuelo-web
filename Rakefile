@@ -8,8 +8,7 @@ task :deploy do
 
   branch = `git symbolic-ref -q HEAD`[11..-2]
 
-  #origin = "heroku-#{branch}"
-  origin = "heroku"
+  origin = "heroku-#{branch}"
 
   begin
     sh "git branch -D deploy || true"
