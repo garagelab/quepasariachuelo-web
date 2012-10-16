@@ -866,6 +866,10 @@ a.contextual {
     @include linear-gradient(#bc321d #b1241a);
   }
 
+  &.medium {
+    @include background(linear-gradient(#d1c10b, #f0dd0c));
+  }
+
   &.ok {
     @include background(linear-gradient(#48a23f, #268230));
   }
