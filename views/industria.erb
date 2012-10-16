@@ -235,20 +235,20 @@
     <section class="estado-legal">
       <h2>Estado legal</h2>
 
-      <span class='badge bad' style="position: relative; margin: 0 0 10px 10px; float: left; width: 100%;">
-        Agente contaminante desde <%= @industria["fecha"] %>
-      </span>
+      <div class='badge bad'>
+        Agente contaminante desde <strong><%= @industria["fecha"] %></strong>
+      </div>
 
       <% if !@industria["Pri"].empty? %>
-        <span class='badge medium' style="position: relative; margin: 0 0 10px 10px; float: left; width: 100%;">
-          Presento PRI el <%= @industria["Pri"] %>
-        </span>
+        <div class='badge medium'>
+          Presento PRI el <strong><%= @industria["Pri"] %></strong>
+        </div>
       <% end %>
 
       <% if !@industria["Reconvertida"].empty? %>
-        <span class='badge ok' style="position: relative; margin: 0 0 10px 10px; float: left; width: 100%;">
-          Reconvertida el <%= @industria["Reconvertida"] %>
-        </span>
+        <div class='badge ok'>
+          Reconvertida el <strong><%= @industria["Reconvertida"] %></strong>
+        </div>
       <% end %>
     </section>
 

@@ -297,7 +297,9 @@ Layer.prototype.show = function(map) {
 }
 
 Layer.prototype.getBubbleHTML = function(row) {
-  return $('#' + this.name + '-bubble-template').tmpl(row).get(0);
+  var bubble = $('#' + this.name + '-bubble-template').tmpl(row).get(0);
+
+  return bubble;
 }
 
 Layer.prototype.refreshMap = function(map) {

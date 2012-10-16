@@ -732,9 +732,16 @@ body > header {
     width: 300px;
     // overflow: hidden;
     margin: 15px 0 0 0;
-
+    
     td:first-child {
       width: 80px;
+      text-align: left;
+    }
+
+    tr.estado-legal {
+      td {
+        border-bottom: 1px solid grey;
+      }
     }
   }
 
@@ -805,10 +812,15 @@ a.contextual {
     }
   }
 
-  .badge {
+  span.badge {
     position: absolute;
     top: 5px;
     right: $blueprint-grid-margin + $blueprint-grid-width / 2;
+  }
+
+  div.badge {
+    margin: 0 0 10px 0;
+    width: 237px;
   }
 
   table.info, table.info table {
@@ -867,7 +879,7 @@ a.contextual {
   }
 
   &.medium {
-    @include background(linear-gradient(#d1c10b, #f0dd0c));
+    @include background(linear-gradient(#f0dd0c, #d1c10b));
   }
 
   &.ok {

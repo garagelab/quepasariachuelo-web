@@ -18,12 +18,12 @@
           <div class='chart'></div>
 	      </section -->
 
-        <section class='filter facet col' data-facet='rubro' style='display: block'>
+        <section class='filter facet col' data-facet='estado-legal' style='display: block'>
           <header>Estado legal</header>
           <div>
             <label><input type='checkbox' value='ac' checked>Agente contaminante</label>
-            <label><input type='checkbox' value='pri' checked>Agente contaminante + PRI presentado</label>
-            <label><input type='checkbox' value='reconvertida' checked>Reconvertida</label>
+            <label><input type='checkbox' value='Pri' checked>Agente contaminante + PRI presentado</label>
+            <label><input type='checkbox' value='Reconvertida' checked>Reconvertida</label>
           </div>
         </section>
 
@@ -153,39 +153,22 @@
         <header>Industria</header>
         <h1><a href='/industrias/${cuit.value}'>${razon_social.value}</a></h1>
         <span>Click para ver detalle</span>
-        <div class='chart' data-x='${semaforo_riesgo.value}' data-y='${semaforo_legal.value}'></div>
+        <!-- div class='chart' data-x='${semaforo_riesgo.value}' data-y='${semaforo_legal.value}'></div -->
 
         <table class='info'>
-          <!--tr>
-            <td>CUIT</td>
-            <td>${cuit.value}</td>
+          <tr class="estado-legal">
+            <td>Estado legal</td>
+            <td>
+              AG. CONTAMINANTE DESDE ${fecha.value}<br />
+              {{if Pri.value}}
+                  PRESENTO PRI EL ${Pri.value}<br />
+              {{/if}}
+              
+              {{if Reconvertida.value}}
+                  RECONVERTIDA DESDE ${Reconvertida.value}
+              {{/if}}
+            </td>
           </tr>
-
-          <tr>
-            <td>Personal de oficina</td>
-            <td>${personal_oficina.value.toLowerCase()}</td>
-          </tr>
-
-          <tr>
-            <td>Personal de fábrica</td>
-            <td>${personal_fabrica.value.toLowerCase()}</td>
-          </tr>
-
-          <tr>
-            <td>Superficie total</td>
-            <td>${superficie_total.value.toLowerCase()} m²</td>
-          </tr>
-
-          <tr>
-            <td>Superficie cubierta</td>
-            <td>${superficie_cubierta.value.toLowerCase()} m²</td>
-          </tr>
-
-          <tr>
-            <td>Consumo eléctrico</td>
-            <td>${consumo_electricidad.value} HP</td>
-          </tr-->
-
           <tr>
             <td>Actividades</td>
             <td>
