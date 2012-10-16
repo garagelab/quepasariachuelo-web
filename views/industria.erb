@@ -7,17 +7,8 @@
       <%= @industria["razon_social"] %>
     </h1>
 
-    <% if @industria["semaforo_legal_absoluto"].to_i == 0 %>
-      <span class='badge ok'>
-        Industria reconvertida
-      </span>
-    <% else %>
-      <span class='badge bad'>
-        Agente contaminante
-      </span>
-    <% end %>
-
     <h2>Datos Generales</h2>
+    <p>Datos provistos por ACUMAR con fecha 16/10/2012</p>
 
     <table class='info'>
       <tr>
@@ -53,7 +44,7 @@
 
     </table>
 
-    <h2>Datos del Establecimiento - Índice de Riesgo Ambiental</h2>
+    <h2>Datos del Establecimiento</h2>
     <table class='info'>
 
       <tr>
@@ -226,27 +217,10 @@
       </tr>
 
     </table>
-
-
-    <h2>Comportamiento Legal</h2>
-    <table class='info'>
-      <tr>
-        <td>Situación ante el PRI</td>
-        <td>
-          <%= @industria["situacion_pri"] %>
-
-          <p>Fuente: COMLETAR</p>
-            <!-- <br />Datos del sitio web ACUMAR y documentación informada al Juzgado Federal de Quilmes.-->
-        </td>
-      </tr>
-
-    </table>
-
-
   </div>
 
   <div class='sidebar'>
-    <section id='riesgo'>
+    <!-- section id='riesgo'>
     <div class='chart' data-x='<%= @industria["semaforo_riesgo"] %>' data-y='<%= @industria["semaforo_legal"] %>'></div>
 
     <p>
@@ -256,6 +230,26 @@
     <br>
     <a href='/contenido/como-opera-qpr#semaforo-industrias' class='contextual'>¿Cómo se calcula?</a>
     </p>
+    </section-->
+
+    <section class="estado-legal">
+      <h2>Estado legal</h2>
+
+      <span class='badge bad' style="position: relative; margin: 0 0 10px 10px; float: left; width: 100%;">
+        Agente contaminante desde <%= @industria["fecha"] %>
+      </span>
+
+      <% if !@industria["Pri"].empty? %>
+        <span class='badge bad' style="position: relative; margin: 0 0 10px 10px; float: left; width: 100%;">
+          Presento PRI el <%= @industria["Pri"] %>
+        </span>
+      <% end %>
+
+      <% if !@industria["Reconvertida"].empty? %>
+        <span class='badge ok' style="position: relative; margin: 0 0 10px 10px; float: left; width: 100%;">
+          Reconvertida el <%= @industria["Reconvertida"] %>
+        </span>
+      <% end %>
     </section>
 
     <section class='location'>
