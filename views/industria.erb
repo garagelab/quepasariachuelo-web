@@ -220,18 +220,6 @@
   </div>
 
   <div class='sidebar'>
-    <!-- section id='riesgo'>
-    <div class='chart' data-x='<%= @industria["semaforo_riesgo"] %>' data-y='<%= @industria["semaforo_legal"] %>'></div>
-
-    <p>
-    Dimensión de riesgo: <%= @industria["semaforo_riesgo_absoluto"] %> puntos.
-    <br>
-    Dimensión legal: <%= @industria["semaforo_legal_absoluto"] %> puntos.
-    <br>
-    <a href='/contenido/como-opera-qpr#semaforo-industrias' class='contextual'>¿Cómo se calcula?</a>
-    </p>
-    </section-->
-
     <section class="estado-legal">
       <h2>Estado legal</h2>
 
@@ -239,15 +227,15 @@
         Agente contaminante desde <strong><%= @industria["fecha"] %></strong>
       </div>
 
-      <% if !@industria["Pri"].empty? %>
+      <% if !@industria["pri"].empty? %>
         <div class='badge medium'>
-          Presento PRI el <strong><%= @industria["Pri"] %></strong>
+          Presento PRI el <strong><%= @industria["pri"] %></strong>
         </div>
       <% end %>
 
-      <% if !@industria["Reconvertida"].empty? %>
+      <% if !@industria["reconvertida"].empty? %>
         <div class='badge ok'>
-          Reconvertida el <strong><%= @industria["Reconvertida"] %></strong>
+          Reconvertida el <strong><%= @industria["reconvertida"] %></strong>
         </div>
       <% end %>
     </section>

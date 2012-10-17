@@ -201,10 +201,10 @@ var bubble = null;
 
 var COLUMNS = {
   industrias: [
-    {sName: "semaforo_riesgo_absoluto", sTitle: "Semáforo (Riesgo)", asSorting: ["desc", "asc"]},
-    {sName: "semaforo_legal_absoluto", sTitle: "Semáforo (Legal)", asSorting: ["desc", "asc"]},
+    // {sName: "semaforo_riesgo_absoluto", sTitle: "Semáforo (Riesgo)", asSorting: ["desc", "asc"]},
+    // {sName: "semaforo_legal_absoluto", sTitle: "Semáforo (Legal)", asSorting: ["desc", "asc"]},
     {sName: "razon_social", sTitle: "Razón social", fnRender: function(o) {
-      return '<a href="/industrias/' + o.aData[3] + '">' + o.aData[o.iDataColumn] + '</a>';
+      return '<a href="/industrias/' + o.aData[1] + '">' + o.aData[o.iDataColumn] + '</a>';
     }},
     {sName: "cuit", sTitle: "CUIT"},
     {sName: "curt", sTitle: "CURT"},

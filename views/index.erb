@@ -10,20 +10,12 @@
 		<!-- Inicio Filtro de Empresas -->
 
 	    <div id='filters-industrias' class='entity-filter' data-target-layer='industrias'>
-	      <!-- section class='filter riesgo' data-facet='semaforo_riesgo'>
-	        <header>
-	          Semáforo de Industrias
-	          <a href='/contenido/como-opera-qpr#semaforo-industrias' class='contextual'>¿Qué es?</a>
-	        </header>
-          <div class='chart'></div>
-	      </section -->
-
-        <section class='filter facet col' data-facet='estado-legal' style='display: block'>
+        <section class='filter facet col' data-facet='estado_legal' style='display: block'>
           <header>Estado legal</header>
           <div>
-            <label><input type='checkbox' value='ac' checked>Agente contaminante</label>
-            <label><input type='checkbox' value='Pri' checked>Agente contaminante + PRI presentado</label>
-            <label><input type='checkbox' value='Reconvertida' checked>Reconvertida</label>
+            <label><input type='checkbox' value='20' checked>Agente contaminante</label>
+            <label><input type='checkbox' value='10' checked>Agente contaminante + PRI presentado</label>
+            <label><input type='checkbox' value='0' checked>Reconvertida</label>
           </div>
         </section>
 
@@ -153,19 +145,18 @@
         <header>Industria</header>
         <h1><a href='/industrias/${cuit.value}'>${razon_social.value}</a></h1>
         <span>Click para ver detalle</span>
-        <!-- div class='chart' data-x='${semaforo_riesgo.value}' data-y='${semaforo_legal.value}'></div -->
 
         <table class='info'>
           <tr class="estado-legal">
             <td>Estado legal</td>
             <td>
               AG. CONTAMINANTE DESDE ${fecha.value}<br />
-              {{if Pri.value}}
-                  PRESENTO PRI EL ${Pri.value}<br />
+              {{if pri.value}}
+                  PRESENTO PRI EL ${pri.value}<br />
               {{/if}}
               
-              {{if Reconvertida.value}}
-                  RECONVERTIDA DESDE ${Reconvertida.value}
+              {{if reconvertida.value}}
+                  RECONVERTIDA DESDE ${reconvertida.value}
               {{/if}}
             </td>
           </tr>
