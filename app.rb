@@ -97,8 +97,8 @@ class QPR < Sinatra::Base
     erb(:"faq", :layout => true)
   end
 
-  get "/industrias/:cuit" do |cuit|
-    @industria = Industrias.where(:cuit => cuit).first
+  get "/industrias/:curt" do |curt|
+    @industria = Industrias.where(:curt => curt).first
     erb(:"industria")
   end
 
