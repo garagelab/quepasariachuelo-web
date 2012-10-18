@@ -70,7 +70,7 @@ function initializeMap() {
     minZoom: 9,
     mapTypeId: 'roadmap',
     streetViewControl: false,
-	styles: mapStyles
+    styles: mapStyles
   });
 
   var everything = [[-90, -90], [-90, 90], [90, -90], [-90, -90]];
@@ -80,7 +80,8 @@ function initializeMap() {
     strokeWeight: 0,
     strokeOpacity: 0.2,
     fillColor: "#000000",
-    fillOpacity: 0.1
+    fillOpacity: 0.1,
+    clickable: false
   });
 
   cuenca.setMap(map);
