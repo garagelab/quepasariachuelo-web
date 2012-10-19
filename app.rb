@@ -47,7 +47,7 @@ class QPR < Sinatra::Base
     end
 
     def yesno(value)
-      if value == "1"
+      if value == "1" || value == "SI"
         "Sí"
       else
         "No"
