@@ -39,13 +39,25 @@
         <td><%= @industria["curt"] %></td>
       </tr>
       <tr>
+        <td>Actividad</td>
+        <td>
+          <%= join_cols(@industria, :actividad) %>
+        </td>
+      </tr>
+      <tr>
         <td>Sitio web</td>
-        <td><a href='<%= @industria["sitio_web"] %>' target='_blank'><%= @industria["sitio_web"] %></a></td>
+        <td>
+          <% if not @industria["sitio_web"].empty? and @industria["sitio_web"] != '-' %>
+          <a href='<%= @industria["sitio_web"] %>' target='_blank'><%= @industria["sitio_web"] %></a>
+          <% else %>
+          No informado
+          <% end %>
+        </td>
       </tr>
 
     </table>
 
-    <h2>Datos del Establecimiento</h2>
+    <!-- h2>Datos del Establecimiento</h2>
     <table class='info'>
 
       <tr>
@@ -206,17 +218,10 @@
             </tr>
 
           </table>
-          <!-- <br />Declaraciones juradas para el
-          <a href='http://www.sicmar.gov.ar/index/index.html' target='_blank'>CURT</a>
-          y los informes de las inspecciones y fiscalizaciones
-          efectuadas por el organismo y que forman parte de la
-          documentación informada al Juzgado Federal de Quilmes. La
-          información del CURT pertenece al 7 de julio de 2011, por lo
-          que algunos datos pueden estar desactualizados. -->
         </td>
       </tr>
 
-    </table>
+    </table -->
   </div>
 
   <div class='sidebar'>
