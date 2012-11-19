@@ -19,12 +19,21 @@
           </div>
         </section>
 
-	      <section class='filter facet col-2' data-facet='rubro' style='display: block'>
+	      <section class='filter facet col-2' data-facet='actividad_1' style='display: block'>
 	        <header>Rubro</header>
 	        <div>
+            <label><input type='checkbox' value='15' checked>Alimencicia</label>
+            <label><input type='checkbox' value='17' checked>Textil</label>
+            <label><input type='checkbox' value='19' checked>Curtiembre</label>
+            <label><input type='checkbox' value='21' checked>Papelera</label>
+            <label><input type='checkbox' value='24' checked>Química</label>
+            <label><input type='checkbox' value='28' checked>Metalurgia</label>
+            <label><input type='checkbox' value='otros' checked>Otros</label>
+<!--
 	          <% @rubros.each do |rubro| %>
 	          <label><input type='checkbox' value='<%= rubro %>' checked><%= rubro || "Otro" %></label>
 	          <% end %>
+-->
 	        </div>
 	      </section>
 	    </div>

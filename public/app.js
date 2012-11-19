@@ -102,7 +102,19 @@ function refresh() {
     if ($checked.length > 0 && $checked.length != $all.length) {
       var values = $.map($checked, function(e) { return "'" + e.getAttribute('value') + "'"; });
       var field = this.getAttribute('data-facet');
-      $.each(layers, function() { this.conditions.push("'" + field + "' IN (" + values.join(", ") + ")"); });
+
+      if(field == 'actividad_1'){
+        $.each(layers, function() {
+          var or_condition = [];
+          for(var i = 0; i < values.length; i++){
+            or_condition.push("'actividad_1' STARTS WITH " + values[i]);
+          }
+
+          this.conditions.push(or_condition.join(" or "));
+        });
+      }else{
+        $.each(layers, function() { this.conditions.push("'" + field + "' IN (" + values.join(", ") + ")"); });
+      }
     }
 
     var $meter = $('.meter > div', this);
