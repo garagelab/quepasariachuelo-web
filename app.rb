@@ -14,7 +14,7 @@ FusionTables::Connection::URL = URI.parse("http://tables.googlelabs.com/api/quer
 
 TABLES = {
   # :industrias       => 1731573, #la tabla posta
-  :industrias       => 5501867, # la tabla de clodo
+  :industrias       => '1z7kb7rTRavwtB0_INtDUPvxaq1ngzKwAud3mV4g', # la tabla de clodo
   :basurales        => 1413418,
   :asentamientos    => 1874853,
   :relocalizaciones => 1809291,
