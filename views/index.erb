@@ -23,7 +23,7 @@
 	        <header>Rubro</header>
 	        <div>
 	          <% @rubros.each do |rubro| %>
-	          <label><input type='checkbox' value='<%= rubro %>' checked><%= rubro || "Otro" %></label>
+	          <label><input type='checkbox' value='<%= rubro || "Otro" %>' checked><%= rubro || "Otro" %></label>
 	          <% end %>
 	        </div>
 	      </section>
