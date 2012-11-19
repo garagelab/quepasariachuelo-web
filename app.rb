@@ -21,7 +21,7 @@ TABLES = {
   :reportes         => 1875969,
 }
 
-Industrias = DB[TABLES[:industrias]]
+Industrias = DB[TABLES[:industrias].to_sym]
 Basurales = DB[TABLES[:basurales]]
 Asentamientos = DB[TABLES[:asentamientos]]
 Reportes = DB[TABLES[:reportes]]
