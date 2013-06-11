@@ -58,14 +58,14 @@
           data-url="http://quepasariachuelo.org.ar"
           data-via="qpasariachuelo">Twittear</a>
 
-        <iframe
+        <!-- iframe
           class='facebook'
           src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fquepasariachuelo.org.ar&amp;send=false&amp;layout=button_count&amp;width=100&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=21&amp;appId=124812904296956&amp;locale=es_AR"
           scrolling="no"
           frameborder="0"
           style="border:none; overflow:hidden; width:100px; height:21px;"
           allowTransparency="true">
-        </iframe>
+        </iframe -->
 
       </div>
     </header>
@@ -92,12 +92,14 @@
     <script type='text/javascript' src='/app.js'></script>
     <script src='/relocalizaciones.js'></script>
     <script src='/raphael.js'></script>
-    <script src='/industrias-semaforo.js'></script>
+    <!-- script src='/industrias-semaforo.js'></script -->
 
     <script>
       <% TABLES.each do |name, source| %>
         Layer.add(<%= name.to_json %>, <%= source.to_json %>);
       <% end %>
+
+      var API_KEY = '<%= API_KEY.to_s %>';
     </script>
 
     <script src="//platform.twitter.com/widgets.js"></script>

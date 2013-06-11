@@ -358,10 +358,19 @@ Layer.prototype.query = function(callback) {
     sql += ' where ' + this.conditions.join(' AND ');
   }
 
-  $.getJSON('http://fusiontables.googleusercontent.com/fusiontables/api/query?sql=' + encodeURIComponent(sql) + '&jsonCallback=?')
+  $.ajax({
+      type: 'GET',
+      url: 'https://www.googleapis.com/fusiontables/v1/query?key='+API_KEY+'&sql=' + encodeURIComponent(sql) + '&jsonCallback=?',
+      success: function(res) {
+        callback(res);
+      }
+  });
+/*
+  $.getJSON('https://www.googleapis.com/fusiontables/v1/query?key='+API_KEY+'&sql=' + encodeURIComponent(sql) + '&jsonCallback=?')
     .success(function(res) {
       callback(res.table);
     });
+*/
 }
 
 Layer.layers = {};
@@ -712,9 +721,18 @@ function excerpt(s, size) {
 }
 
 function query(sql, cb) {
-  url = 'http://www.google.com/fusiontables/api/query?sql=';
+  url = 'https://www.googleapis.com/fusiontables/v1/query?key='+API_KEY+'&sql=';
   var url = url + encodeURIComponent(sql) + '&jsonCallback=?';
-  $.getJSON(url).success(function(res) { cb(res.table.cols, res.table.rows) });
+
+  $.ajax({
+      type: 'GET',
+      url: url,
+      success: function(res) {
+        cb(res.cols, res.rows);
+      }
+  });
+
+  // $.getJSON(url).success(function(res) { cb(res.table.cols, res.table.rows) });
 }
 
 function snap(n) {

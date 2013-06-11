@@ -10,12 +10,15 @@ Tilt.register 'md', Tilt::RDiscountTemplate
 
 DB = Sequel.connect("fusiontables:///")
 
-FusionTables::Connection::URL = URI.parse("http://tables.googlelabs.com/api/query")
+API_KEY = "AIzaSyDGFlbdQqjeLGeLVk_9stEtLOv9hSNN2Sw"
+
+FusionTables::Connection::URL = URI.parse("https://www.googleapis.com/fusiontables/v1/query")
+FusionTables::Connection::API_URL = API_KEY
 
 TABLES = {
   # :industrias       => 1731573, #la tabla posta
   # :industrias       => '163MxwQbU-5Bjo2faTXWmOdLKFb7odRqxtFTCUhk'.to_sym, # la tabla de clodo
-  :industrias       => '1pOAkz4c7z_dZE4hoAPECKiARAwLZTh8MVzAo-8U'.to_sym,
+  :industrias       => '1k9dP4jbE5VayiKGMLm3FYNpLc0tM3zGjSrtyWc4'.to_sym,
   :basurales        => 1413418,
   :asentamientos    => 1874853,
   :relocalizaciones => 1809291,
