@@ -17,12 +17,15 @@ FusionTables::Connection::API_URL = API_KEY
 
 TABLES = {
   # :industrias       => 1731573, #la tabla posta
-  # :industrias       => '163MxwQbU-5Bjo2faTXWmOdLKFb7odRqxtFTCUhk'.to_sym, # la tabla de clodo
-  :industrias       => '1k9dP4jbE5VayiKGMLm3FYNpLc0tM3zGjSrtyWc4'.to_sym,
-  :basurales        => 1413418,
-  :asentamientos    => 1874853,
-  :relocalizaciones => 1809291,
-  :reportes         => 1875969,
+  :industrias       => '15E8qU0EgyybVf1ghfgYvHjAiZDRsLYRP2BL-kqg'.to_sym,
+  # :basurales        => 1413418,
+  :basurales        =>'1pwtB3qV624D6v4z0LtseR3zrmcaSR4LFbrPhVhQ'.to_sym,
+  # :asentamientos    => 1874853,
+  :asentamientos    => '1QktJ0shGoudW9By5ivsNY-SssDsn99ZWvg_jFqA'.to_sym,
+  # :relocalizaciones => 1809291,
+  :relocalizaciones => '1ATG8zFuuoa6xrhEc6CaxnQd7pyHc6zTr60VOiLA'.to_sym,
+  # :reportes         => 1875969,
+  :reportes         => '1eZOCmU84b4dh9KLISSYu75e_Te4HK8uEC3mp26A'.to_sym,
 }
 
 Industrias = DB[TABLES[:industrias]]
